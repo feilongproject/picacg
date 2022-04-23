@@ -1,0 +1,48 @@
+
+body {
+  margin: 5% 10% auto 10%;
+  background-color: #0af;
+  display: flex;
+  flex-direction: column;
+}
+
+.header,
+.video-info,
+.tittle {
+  background-color: #0df;
+  margin: 10px 0 10px 0;
+  box-shadow: 1px 1px 50px rgb(0 0 0 / 30%);
+  border-radius: 5px;
+}
+
+.tittle {
+  text-align: center;
+}
+
+
+
+.about {
+  flex-direction: row;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.goto-input {
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-grow: 0.7;
+}
+
+.goto-btn {
+  margin-right: 10px;
+}
+
+
