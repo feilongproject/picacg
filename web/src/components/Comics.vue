@@ -1,9 +1,7 @@
 <template>
   <div class="video-info" style="display: flex">
     <span style="line-height: 100%; margin: 10px 10px" class="col">
-      <div class="row">
-        <img :src="thumb" />
-
+      <div class="col">
         <div class="col info">
           <table border="1">
             <tr>
@@ -16,7 +14,7 @@
             </tr>
             <tr>
               <th>description</th>
-              <th>{{ description }}</th>
+              <th style="white-space: pre-wrap">{{ description }}</th>
             </tr>
             <tr>
               <th>author</th>
