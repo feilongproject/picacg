@@ -14,20 +14,23 @@
               <th>标题</th>
               <th>页数</th>
               <th>tag</th>
-              <th>id</th>
+              <!-- <th>id</th> -->
             </tr>
             <tr v-for="(i, j) in item.comics" :key="j">
               <th>{{ i.author }}</th>
-              <th>{{ i.title }}</th>
+              <!--  <th>{{ i.title }}</th> -->
+              <th>
+                <a :href="`/comics?bookId=${i._id}`">{{ i.title }}</a>
+              </th>
               <th>{{ i.pagesCount }}</th>
               <th style="">
                 <span v-for="(tag, k) in i.categories" :key="k">
                   {{ tag }}
                 </span>
               </th>
-              <th>
+              <!--  <th>
                 <a :href="`/comics?bookId=${i._id}`">{{ i._id }}</a>
-              </th>
+              </th> -->
             </tr>
           </div>
         </table>
