@@ -7,6 +7,10 @@
         <div class="col info">
           <table border="1">
             <tr>
+              <th>cover</th>
+              <th><img :src="thumb" /></th>
+            </tr>
+            <tr>
               <th>title</th>
               <th>{{ title }}</th>
             </tr>
