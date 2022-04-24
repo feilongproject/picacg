@@ -1,5 +1,5 @@
 export const CustomConfig = {
 
-    ApiProxyUrl: "http://code.feilongproject.com:8787/",
+    ApiProxyUrl: "https://picacg.feilongproject.workers.dev/",
 
 }

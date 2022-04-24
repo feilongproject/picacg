@@ -32,7 +32,7 @@ declare global {
         message: string
     }
 
-    interface Comics {
+    interface ComicsInfo {
         code: number,
         message: string,
         data: {
@@ -81,6 +81,52 @@ declare global {
                 commentsCount: number,
             }
 
+        }
+    }
+
+    interface ComicsEps {
+        code: number,
+        message: string,
+        data: {
+            eps: {
+                docs: {
+                    _id: string,
+                    title: string,
+                    order: number,
+                    updated_at: string,
+                    id: number,
+                }[],
+                total: number,
+                limit: number,
+                page: number,
+                pages: number,
+            }
+        }
+    }
+
+    interface ComicsPics {
+        code: number,
+        message: string,
+        data: {
+            pages: {
+                docs: {
+                    _id: string,
+                    media: {
+                        originalName: string,
+                        path: string,
+                        fileServer: string,
+                    },
+                    id: string,
+                }[],
+                total: number,
+                limit: number,
+                page: number,
+                pages: number,
+            },
+            ep: {
+                _id: string,
+                title: string,
+            }
         }
     }
 }
