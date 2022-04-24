@@ -25,7 +25,9 @@
                   {{ tag }}
                 </span>
               </th>
-              <th>{{ i._id }}</th>
+              <th>
+                <a :href="`/comics?bookId=${i._id}`">{{ i._id }}</a>
+              </th>
             </tr>
           </div>
         </table>
