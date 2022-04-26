@@ -112,7 +112,7 @@ export default Vue.extend({
     this.bookId = bookId.toString();
 
     var comicsInfo: ComicsInfo = await fetch(
-      `${CustomConfig.ApiProxyUrl}comics?bookId=${bookId}`
+      `${CustomConfig.ApiProxyUrl}comics/info?bookId=${bookId}`
     )
       .then((res) => {
         return res.text();
@@ -138,7 +138,7 @@ export default Vue.extend({
     //this.colls = data.data.comic;
 
     var comicsEps: ComicsEps = await fetch(
-      `${CustomConfig.ApiProxyUrl}eps?bookId=${bookId}&page=1`
+      `${CustomConfig.ApiProxyUrl}comics/eps?bookId=${bookId}&page=1`
     )
       .then((res) => {
         return res.text();

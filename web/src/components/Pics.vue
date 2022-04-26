@@ -101,7 +101,7 @@ export default Vue.extend({
     this.ApiProxyUrl = CustomConfig.ApiProxyUrl;
 
     var comicsPics: ComicsPics = await fetch(
-      `${CustomConfig.ApiProxyUrl}pics?bookId=${bookId}&epsId=${epsId}&page=${page}`
+      `${CustomConfig.ApiProxyUrl}comics/pics?bookId=${bookId}&epsId=${epsId}&page=${page}`
     )
       .then((res) => {
         return res.text();
