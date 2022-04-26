@@ -1,7 +1,7 @@
 import { picacg, headers } from './config';
 import { getToken } from './mod/getToken';
 import { getCollections } from './get/collections';
-import { getComics, getComicsEps, getComicsPics } from './get/comics'
+import { getComicsInfo, getComicsEps, getComicsPics, getComicCategories, getComicsBlock } from './get/comics'
 import { getStorage } from './get/storage';
 
 
@@ -18,18 +18,44 @@ async function Main(request: Request): Promise<Response> {
                 'Access-Control-Allow-Origin': '*',
             }
         })
-    } else if (pathname.startsWith("comics")) {
+    } else if (pathname.startsWith("comics/categories")) {
+
+        var categories = await getComicCategories(token.data.token);
+        return new Response(JSON.stringify(categories), {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            }
+        })
+
+    } else if (pathname.startsWith("comics/block")) {
+        var page = new URL(request.url).searchParams.get("page");
+        var c = new URL(request.url).searchParams.get("c");
+        var sort = new URL(request.url).searchParams.get("s");
+
+        if (page && c && (sort == "ua" || sort == "dd" || sort == "da" || sort == "ld" || sort == "vd")) {
+            var comicsList = await getComicsBlock(token.data.token, parseInt(page), encodeURI(c), sort);
+            return new Response(JSON.stringify(comicsList), {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                }
+            });
+        } else {
+            return new Response(`no page:${page}/c:${c}/s:${sort}`);
+        }
+    } else if (pathname.startsWith("comics/info")) {
         var bookId = new URL(request.url).searchParams.get("bookId");
         if (bookId) {
-            var comics = await getComics(token.data.token, bookId);
+            var comics = await getComicsInfo(token.data.token, bookId);
             return new Response(JSON.stringify(comics), {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 }
             })
+        } else {
+            return new Response("null bookId");
         }
 
-    } else if (pathname.startsWith("eps")) {
+    } else if (pathname.startsWith("comics/eps")) {
         var bookId = new URL(request.url).searchParams.get("bookId");
         var page = new URL(request.url).searchParams.get("page");
         console.log(`bookId:${bookId},page:${page}`);
@@ -40,8 +66,10 @@ async function Main(request: Request): Promise<Response> {
                     'Access-Control-Allow-Origin': '*',
                 }
             })
+        } else {
+            return new Response(`no bookId:${bookId} or page:${page}`)
         }
-    } else if (pathname.startsWith("pics")) {
+    } else if (pathname.startsWith("comics/pics")) {
         var bookId = new URL(request.url).searchParams.get("bookId");
         var page = new URL(request.url).searchParams.get("page");
         var epsId = new URL(request.url).searchParams.get("epsId");
@@ -53,6 +81,8 @@ async function Main(request: Request): Promise<Response> {
                     'Access-Control-Allow-Origin': '*',
                 }
             })
+        } else {
+            return new Response(`no bookId:${bookId},epsId:${epsId},page:${page}`)
         }
 
     } else if (pathname.startsWith("storage")) {
@@ -62,12 +92,11 @@ async function Main(request: Request): Promise<Response> {
             var response = await getStorage(token.data.token, fileServer, path);
             return response;
         } else return new Response("no fileServer or path");
+    } else {
+        return new Response("bad request");
     }
 
 
-
-
-    return new Response(headers.signature);
 }
 
 

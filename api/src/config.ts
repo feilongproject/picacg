@@ -1,11 +1,3 @@
-
-/**
-
-
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2EwNzI1NjhmYzFkNjU0YTEyMWU1NDQiLCJlbWFpbCI6ImZlaWxvbmdwcm9qZWN0Iiwicm9sZSI6Im1lbWJlciIsIm5hbWUiOiLpo57pvplwcm9qZWN0IiwidmVyc2lvbiI6IjIuMi4xLjMuMy40IiwiYnVpbGRWZXJzaW9uIjoiNDUiLCJwbGF0Zm9ybSI6ImFuZHJvaWQiLCJpYXQiOjE2NDkzMDY3NzQsImV4cCI6MTY0OTkxMTU3NH0.xYDxO-5xQUcOlK57xOJpg7vcpm3C8YNd-MEMwcf6_CY
-
- */
-
 export const headers = {
     accept: "application/vnd.picacomic.com.v1+json",
     "User-Agent": "okhttp/3.8.1",
@@ -19,7 +11,7 @@ export const headers = {
     "app-uuid": "defaultUuid",
     "app-version": "2.2.1.3.3.4",
     "image-quality": "original",
-    nonce: "a7a39a5eb62d11eca72030d042f4fac1",
+    nonce: "4ce7a7aa759b40f794d189a88b84aba8",
     signature: "",
     time: "",
     authorization: "",
