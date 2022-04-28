@@ -1,6 +1,9 @@
 <template>
   <div class="video-info" style="display: flex">
-    <span style="line-height: 100%; margin: 10px 10px" class="col">
+    <span
+      style="line-height: 100%; margin: 10px 10px; flex-wrap: wrap"
+      class="col"
+    >
       <div class="col">
         <div class="col info">
           <table border="1">
@@ -43,7 +46,7 @@
           </table>
         </div>
       </div>
-      <div>
+      <div class="col">
         <table border="1">
           <tr>
             <th>eps</th>

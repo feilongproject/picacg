@@ -50,6 +50,11 @@ h1 {
 }
 
 img {
+  max-height: 100%;
+  max-width: 500px;
+  min-width: 150px;
+  min-height: 200px;
+  background-color: black;
   /* height: 100px; */
   width: 100%;
 }
