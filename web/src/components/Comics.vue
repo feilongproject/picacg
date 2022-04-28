@@ -95,15 +95,15 @@ import { CustomConfig } from "../config";
 export default Vue.extend({
   data: function () {
     return {
-      author: "",
-      categories: [""],
-      chineseTeam: "",
-      description: "",
-      tags: [""],
-      thumb: "",
-      title: "",
-      eps: [{}],
-      bookId: "",
+      author: "Loading......",
+      categories: ["Loading......"],
+      chineseTeam: "Loading......",
+      description: "Loading......",
+      tags: ["Loading......"],
+      thumb: "Loading......",
+      title: "Loading......",
+      eps: Array(),
+      bookId: "Loading......",
     };
   },
   mounted: async function () {

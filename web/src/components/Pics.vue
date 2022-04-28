@@ -1,7 +1,8 @@
 <template>
   <div class="video-info" style="display: flex">
-    <span style="line-height: 100%; margin: 10px 10px" class="col"
-      ><h1>{{ title }}</h1>
+    <span style="line-height: 100%; margin: 10px 10px" class="col">
+      <h1>{{ loadingStr }}</h1>
+      <h1>{{ title }}</h1>
       <div class="col">
         <div v-for="(pic, i) in pics" :key="i">
           <img
@@ -71,17 +72,8 @@ import { CustomConfig } from "../config";
 export default Vue.extend({
   data: function () {
     return {
-      pics: [
-        {
-          _id: "",
-          media: {
-            originalName: "",
-            path: "",
-            fileServer: "",
-          },
-          id: "",
-        },
-      ],
+      loadingStr: "Loading......",
+      pics: Array(),
       title: "",
       ApiProxyUrl: "",
       bookId: "",
@@ -111,10 +103,15 @@ export default Vue.extend({
         return JSON.parse(text);
       });
 
+    var timeout = setInterval(() => {
+      this.loadingStr = this.loadingStr.slice(0, -1);
+      //console.log(this.loadingStr);
+      if (this.loadingStr == "") clearInterval(timeout);
+    }, 100);
+
     console.log(comicsPics.data);
 
     this.pages = comicsPics.data.pages.pages;
-
     this.title = comicsPics.data.ep.title;
     this.pics = comicsPics.data.pages.docs;
   },
