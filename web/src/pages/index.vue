@@ -1,6 +1,12 @@
 <template>
-  <div>
+  <el-container direction="vertical">
     <Title />
     <Collections />
-  </div>
+  </el-container>
 </template>
+
+<style scoped>
+.el-container {
+  margin-top: 10px;
+}
+</style>

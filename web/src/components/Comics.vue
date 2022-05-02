@@ -1,88 +1,50 @@
 <template>
-  <div class="video-info" style="display: flex">
-    <span
-      style="line-height: 100%; margin: 10px 10px; flex-wrap: wrap"
-      class="col"
+  <div class="main" style="padding: 10px">
+    <el-descriptions
+      class="margin-top"
+      labelStyle="background:#0df;color:#000"
+      contentStyle="background:#0df;color:#000"
+      :column="2"
+      border
     >
-      <div class="col">
-        <div class="col info">
-          <table border="1">
-            <tr>
-              <th>cover</th>
-              <th><img :src="thumb" /></th>
-            </tr>
-            <tr>
-              <th>title</th>
-              <th>{{ title }}</th>
-            </tr>
-            <tr>
-              <th>description</th>
-              <th style="white-space: pre-wrap">{{ description }}</th>
-            </tr>
-            <tr>
-              <th>author</th>
-              <th>{{ author }}</th>
-            </tr>
-            <tr>
-              <th>chineseTeam</th>
-              <th>{{ chineseTeam }}</th>
-            </tr>
-            <tr>
-              <th>tags</th>
-              <th class="col">
-                <div v-for="(c, j) in tags" :key="j">
-                  {{ c }}
-                </div>
-              </th>
-            </tr>
-            <tr>
-              <th>categories</th>
-              <th class="col">
-                <div v-for="(c, j) in categories" :key="j">
-                  {{ c }}
-                </div>
-              </th>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="col">
-        <table border="1">
-          <tr>
-            <th>eps</th>
-            <th>title</th>
-            <th>id</th>
-          </tr>
-          <tr v-for="(ep, i) in eps" :key="i">
-            <th>{{ ep.order }}</th>
-            <th>
-              <a :href="`/pics?bookId=${bookId}&epsId=${ep.order}&page=1`">{{
-                ep.title
-              }}</a>
-            </th>
-            <th>{{ ep.id }}</th>
-          </tr>
-        </table>
-      </div>
-    </span>
+      <el-descriptions-item label="title" :span="2">
+        {{ title }}
+      </el-descriptions-item>
+      <el-descriptions-item label="conver" span="2">
+        <img :src="thumb" />
+      </el-descriptions-item>
+      <el-descriptions-item label="description" span="2">
+        {{ description }}
+      </el-descriptions-item>
+      <el-descriptions-item label="author" span="1">
+        {{ author }}
+      </el-descriptions-item>
+      <el-descriptions-item label="chineseTeam" span="1">
+        {{ chineseTeam }}
+      </el-descriptions-item>
+      <el-descriptions-item label="categories">
+        <el-tag v-for="(c, j) in categories" :key="j">
+          {{ c }}
+        </el-tag>
+      </el-descriptions-item>
+      <el-descriptions-item label="tags">
+        <el-tag v-for="(c, j) in tags" :key="j">
+          {{ c }}
+        </el-tag>
+      </el-descriptions-item>
+      <el-descriptions-item label="eps" span="2">
+        <el-tag type="" effect="dark" v-for="(ep, j) in eps" :key="j">
+          {{ ep.order }}
+          <a :href="`/pics?bookId=${bookId}&epsId=${ep.order}&page=1`">
+            {{ ep.title }}
+          </a>
+        </el-tag>
+      </el-descriptions-item>
+    </el-descriptions>
   </div>
 </template>
 
-<style>
-.col {
-  display: flex;
-  flex-direction: column;
-}
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-/* .info {
-  /* line-height: 1.5; 
-  /* height: 10px; 
-} */
-
+<style lang="scss" scoped>
 img {
   /* height: 100px; */
   width: 30%;
@@ -151,6 +113,30 @@ export default Vue.extend({
         return JSON.parse(text);
       });
     var eps = comicsEps.data.eps;
+    this.eps = eps.docs;
+
+    var { page, pages } = eps;
+    var fetchs: Promise<ComicsEps>[] = Array();
+
+    while (page != pages) {
+      page++;
+      fetchs.push(
+        fetch(
+          `${CustomConfig.ApiProxyUrl}comics/eps?bookId=${bookId}&page=${page}`
+        ).then((res) => {
+          return res.json();
+        })
+      );
+    }
+    var _eps = await Promise.all(fetchs).then((ress) => {
+      //console.log(ress);
+      return ress;
+    });
+    _eps.forEach((item) => {
+      item.data.eps.docs.forEach((_ep) => {
+        eps.docs.push(_ep);
+      });
+    });
     console.log(`eps total:${eps.total},page:${eps.page},pages:${eps.pages}`);
     console.log(eps.docs);
     this.eps = eps.docs;

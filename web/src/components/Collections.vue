@@ -1,44 +1,46 @@
 <template>
-  <div class="video-info" style="display: flex">
-    <span style="line-height: 100%; margin: 10px 10px">
-      <h1>{{ loadingStr }}</h1>
-      <div v-for="(item, index) in colls" :key="index">
-        <table border="1">
-          <div v-if="item.title != '本子魔推薦'">
-            <caption>
-              {{
-                item.title
-              }}
-            </caption>
-            <tr>
-              <th>作者</th>
-              <th>标题</th>
-              <th>页数</th>
-              <th>tag</th>
-            </tr>
-            <tr v-for="(i, j) in item.comics" :key="j">
-              <th>{{ i.author }}</th>
-              <th>
-                <a :href="`/comics?bookId=${i._id}`">{{ i.title }}</a>
-              </th>
-              <th>{{ i.pagesCount }}</th>
-              <th style="">
-                <span v-for="(tag, k) in i.categories" :key="k">
-                  {{ tag }}
-                </span>
-              </th>
-            </tr>
-          </div>
-        </table>
-        <br />
-        <hr />
-      </div>
-    </span>
-  </div>
+  <el-main class="main">
+    <h1>{{ loadingStr }}</h1>
+    <div v-for="(item, index) in colls" :key="index">
+      <el-table
+        v-if="item.title != '本子魔推薦'"
+        :data="item.comics"
+        style="width: 100%"
+        :cell-style="theme"
+        :header-cell-style="theme"
+        border
+      >
+        <el-table-column :label="item.title">
+          <el-table-column prop="author" label="作者" width="100">
+          </el-table-column>
+          <el-table-column prop="title" label="标题">
+            <template slot-scope="scope">
+              <a :href="`/comics?bookId=${scope.row._id}`">
+                {{ scope.row.title }}
+              </a>
+            </template>
+          </el-table-column>
+          <el-table-column prop="pagesCount" label="页数" width="50">
+          </el-table-column>
+          <el-table-column prop="tags" label="tags" width="150">
+            <template slot-scope="scope">
+              <el-tag
+                effect="dark"
+                v-for="(tag, k) in scope.row.categories"
+                :key="k"
+              >
+                {{ tag }}
+              </el-tag>
+            </template>
+          </el-table-column>
+        </el-table-column>
+      </el-table>
+      <br />
+      <hr />
+      <br />
+    </div>
+  </el-main>
 </template>
-
-
-
 
 
 <script lang="ts">
@@ -64,7 +66,9 @@ export default Vue.extend({
         return JSON.parse(text);
       });
 
-    console.log(data);
+    if (data.code != 200) throw new Error(JSON.stringify(data));
+    console.log(data.data.collections[0]);
+
     this.colls = data.data.collections;
 
     var timeout = setInterval(() => {
@@ -73,7 +77,11 @@ export default Vue.extend({
       if (this.loadingStr == "") clearInterval(timeout);
     }, 100);
   },
-  methods: {},
+  methods: {
+    theme() {
+      return "background:#0df;color:#000";
+    },
+  },
 });
 </script>
 

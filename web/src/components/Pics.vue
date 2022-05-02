@@ -1,54 +1,34 @@
 <template>
-  <div class="video-info" style="display: flex">
-    <span style="line-height: 100%; margin: 10px 10px" class="col">
-      <h1>{{ loadingStr }}</h1>
-      <h1>{{ title }}</h1>
-      <div class="col">
-        <div v-for="(pic, i) in pics" :key="i">
-          <img
-            :src="`${ApiProxyUrl}storage?fileServer=${pic.media.fileServer}&path=${pic.media.path}`"
-          />
-          <!-- {{ pic.media.path }} -->
-        </div>
-        <div class="row index">
-          <button
-            :disabled="page == 1"
-            @click="turnPage(bookId, epsId, page - 1)"
-          >
-            previous page
-          </button>
-          <div v-for="i in pages" :key="i">
-            <button :disabled="page == i" @click="turnPage(bookId, epsId, i)">
-              {{ i }}
-            </button>
-          </div>
-          <button
-            :disabled="page == pages"
-            @click="turnPage(bookId, epsId, page + 1)"
-          >
-            next page
-          </button>
-        </div>
+  <div class="main" style="padding: 10px">
+    <h1>{{ loadingStr }}</h1>
+    <h1>{{ title }}</h1>
+
+    <div v-for="(pic, i) in pics" :key="i">
+      <img
+        :src="`${ApiProxyUrl}storage?fileServer=${pic.media.fileServer}&path=${pic.media.path}`"
+      />
+      <!-- {{ pic.media.path }} -->
+    </div>
+    <div class="row index">
+      <button :disabled="page == 1" @click="turnPage(bookId, epsId, page - 1)">
+        previous page
+      </button>
+      <div v-for="i in pages" :key="i">
+        <button :disabled="page == i" @click="turnPage(bookId, epsId, i)">
+          {{ i }}
+        </button>
       </div>
-    </span>
+      <button
+        :disabled="page == pages"
+        @click="turnPage(bookId, epsId, page + 1)"
+      >
+        next page
+      </button>
+    </div>
   </div>
 </template>
 
 <style>
-h1 {
-  line-height: normal;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
 img {
   max-height: 100%;
   max-width: 500px;
@@ -62,10 +42,6 @@ img {
 .picList {
   display: flex;
   flex-direction: column;
-}
-
-.index {
-  justify-content: center;
 }
 </style>
 
