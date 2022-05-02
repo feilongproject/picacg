@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <Title />
-    <Pics />
-  </div>
+  <keep-alive>
+    <div>
+      <Title />
+      <Pics />
+    </div>
+  </keep-alive>
 </template>
