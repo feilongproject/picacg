@@ -2,8 +2,8 @@
   <div class="main" style="padding: 10px">
     <el-descriptions
       class="margin-top"
-      labelStyle="background:#0df;color:#000"
-      contentStyle="background:#0df;color:#000"
+      :labelStyle="{ background: '#0df', color: '#000' }"
+      :contentStyle="{ background: '#0df', color: '#000' }"
       :column="2"
       border
     >
@@ -87,7 +87,7 @@ export default Vue.extend({
         return JSON.parse(text);
       });
 
-    console.log(comicsInfo.data.comic);
+    console.log(comicsInfo.data);
     var comic = comicsInfo.data.comic;
 
     this.author = comic.author;
