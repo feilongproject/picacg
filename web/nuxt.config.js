@@ -28,7 +28,7 @@ export default {
   ],
 
 
-  plugins: ["plugins/element-ui.js"],
+  plugins: ["plugins/element-ui"],
 
   components: true,
 

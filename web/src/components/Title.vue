@@ -66,8 +66,10 @@
 }
 </style>
 
-<script>
-export default {
+<script lang='ts'>
+import Vue from "vue";
+
+export default Vue.extend({
   data() {
     return {
       activeIndex: "1",
@@ -82,7 +84,7 @@ export default {
           disabled: false,
         },
         about: {
-          link: null,
+          link: "",
           disabled: false,
         },
       },
@@ -91,30 +93,44 @@ export default {
   mounted() {
     const { pathname } = location;
     console.log(pathname);
+
     if (pathname == "/") {
       this.turnIndex.index.disabled = true;
     } else if (pathname == "/comics") {
     } else {
-      if (this.turnIndex[pathname]) {
-        this.turnIndex[pathname].disabled = true;
+      var t = this.turnIndex;
+      var key: keyof typeof t;
+
+      for (key in this.turnIndex) {
+        if (key == pathname) {
+          this.turnIndex[key].disabled = true;
+        }
       }
     }
   },
   methods: {
-    handleSelect(key, keyPath) {
-      if (this.turnIndex[key]) {
-        console.log(key, keyPath);
-        location.href = this.turnIndex[key].link;
+    handleSelect(menuKey: string, pathKey: string[]) {
+      var t = this.turnIndex;
+      var key: keyof typeof t;
+
+      for (key in this.turnIndex) {
+        if (key == menuKey) {
+          console.log(key, pathKey);
+          //location.href = this.turnIndex[key].link;
+        }
       }
     },
-    handleClose(done) {
+    handleClose() {
       this.$confirm("确认关闭？")
         .then((_) => {
-          done();
+          //console.log("then");
+          this.searchDialog = false;
         })
-        .catch((_) => {});
+        .catch((_) => {
+          //console.log("catch");
+        });
     },
   },
-};
+});
 </script>
 
