@@ -11,7 +11,6 @@
       background-color="#00ddff"
       text-color="#000000"
       active-text-color="#0000ff"
-      style="display: flex"
     >
       <el-menu-item index="/" :disabled="turnIndex.index.disabled">
         主页
@@ -27,42 +26,43 @@
           GitHub Link
         </a>
       </el-menu-item>
-      <el-button
-        style="margin-left: auto"
-        icon="el-icon-search"
-        @click="searchDialog = true"
-      >
-      </el-button>
-      <el-dialog
-        title="提示"
-        :visible.sync="searchDialog"
-        width="30%"
-        :before-close="handleClose"
-      >
-        <span>搜索功能这一部分在写了</span>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="searchDialog = false">取消</el-button>
-          <el-button type="primary" @click="searchDialog = false">
-            确定
-          </el-button>
-        </span>
-      </el-dialog>
+      <el-menu-item class="searchInput">
+        <el-input
+          placeholder="输入即可搜索"
+          v-model="searchInput"
+          size="mini"
+          clearable
+        >
+        </el-input>
+        <el-button size="mini" icon="el-icon-search" @click="search">
+        </el-button>
+      </el-menu-item>
     </el-menu>
   </el-header>
 </template>
 
-<style>
+<style lang='scss'>
+.searchInput {
+  display: flex;
+  height: 100% !important;
+  margin-top: 5px !important;
+  div {
+    display: flex;
+    input {
+      height: 100% !important;
+    }
+  }
+}
+
 .menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-.tittle {
-  background-color: #0df;
-  box-shadow: 1px 1px 50px rgb(0 0 0 / 30%);
-  border-radius: 5px;
-  text-align: center;
 }
 </style>
 
@@ -73,7 +73,7 @@ export default Vue.extend({
   data() {
     return {
       activeIndex: "1",
-      searchDialog: false,
+      searchInput: "",
       turnIndex: {
         index: {
           link: "/",
@@ -120,7 +120,7 @@ export default Vue.extend({
         }
       }
     },
-    handleClose() {
+    /*     handleClose() {
       this.$confirm("确认关闭？")
         .then((_) => {
           //console.log("then");
@@ -129,6 +129,9 @@ export default Vue.extend({
         .catch((_) => {
           //console.log("catch");
         });
+    }, */
+    search() {
+      this.$message("搜索功能还没写呢");
     },
   },
 });
