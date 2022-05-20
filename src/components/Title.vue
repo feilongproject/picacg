@@ -12,7 +12,7 @@
       text-color="#000000"
       active-text-color="#0000ff"
     >
-      <el-menu-item index="/" :disabled="turnIndex.index.disabled">
+      <el-menu-item index="index" :disabled="turnIndex.index.disabled">
         主页
       </el-menu-item>
       <el-menu-item index="block" :disabled="turnIndex.block.disabled">
