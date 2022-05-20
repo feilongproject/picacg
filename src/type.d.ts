@@ -144,7 +144,7 @@ declare global {
                 isWeb: boolean,
                 active: boolean,
                 link: string,
-            } | {
+            }[] | {
                 _id: string,
                 title: string,
                 description: string,
