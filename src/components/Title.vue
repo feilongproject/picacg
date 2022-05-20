@@ -103,7 +103,7 @@ export default Vue.extend({
       var key: keyof typeof t;
 
       for (key in this.turnIndex) {
-        if (key == pathname) {
+        if (this.turnIndex[key].link == pathname) {
           this.turnIndex[key].disabled = true;
         }
       }
