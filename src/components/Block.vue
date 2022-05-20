@@ -21,9 +21,10 @@
   div {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     .el-image {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
     }
     .el-tag {
       align-self: center;
