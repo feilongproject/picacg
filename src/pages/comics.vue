@@ -1,8 +1,8 @@
 <template>
   <keep-alive>
-    <div>
+    <el-container direction="vertical">
       <Title />
       <Comics />
-    </div>
+    </el-container>
   </keep-alive>
 </template>

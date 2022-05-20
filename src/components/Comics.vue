@@ -1,5 +1,5 @@
 <template>
-  <div class="main" style="padding: 10px">
+  <el-main class="main">
     <el-descriptions
       class="margin-top"
       :labelStyle="{ background: '#0df', color: '#000' }"
@@ -41,7 +41,7 @@
         </el-tag>
       </el-descriptions-item>
     </el-descriptions>
-  </div>
+  </el-main>
 </template>
 
 <style lang="scss" scoped>

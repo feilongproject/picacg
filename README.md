@@ -1,5 +1,5 @@
 # picacg
-哔咔web版本，后端依赖于cloudflare，前端依赖于vue
+哔咔前端，后端可见[https://github.com/feilongproject/picacg-api](https://github.com/feilongproject/picacg-api)
 ------
 ## 目前可使用的功能
 - 每日推荐（不要问我为什么没有本子魔）
@@ -15,4 +15,5 @@
 
 ------
 ------
-目前继续摸鱼，懒得写了
+~~目前继续摸鱼，懒得写了~~
+在写了在写了（

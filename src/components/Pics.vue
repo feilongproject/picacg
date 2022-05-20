@@ -1,5 +1,5 @@
 <template>
-  <div class="main" style="padding: 10px">
+  <el-main class="main">
     <h1>{{ loadingStr }}</h1>
     <h1>{{ title }}</h1>
 
@@ -25,7 +25,7 @@
         next page
       </button>
     </div>
-  </div>
+  </el-main>
 </template>
 
 <style>

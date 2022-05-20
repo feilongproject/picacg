@@ -38,6 +38,7 @@
         </el-button>
       </el-menu-item>
     </el-menu>
+    <hr noshade="noshade" style="height: 10px" />
   </el-header>
 </template>
 
@@ -116,7 +117,7 @@ export default Vue.extend({
       for (key in this.turnIndex) {
         if (key == menuKey) {
           console.log(key, pathKey);
-          //location.href = this.turnIndex[key].link;
+          location.href = this.turnIndex[key].link;
         }
       }
     },

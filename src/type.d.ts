@@ -129,6 +129,33 @@ declare global {
             }
         }
     }
+
+    interface ComicsCategories {
+        code: number,
+        message: string,
+        data: {
+            categories: {
+                title: string,
+                thumb: {
+                    originalName: string,
+                    path: string,
+                    fileServer: string,
+                },
+                isWeb: boolean,
+                active: boolean,
+                link: string,
+            } | {
+                _id: string,
+                title: string,
+                description: string,
+                thumb: {
+                    originalName: string,
+                    path: string,
+                    fileServer: string,
+                },
+            }[],
+        }
+    }
 }
 
 

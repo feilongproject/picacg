@@ -17,7 +17,7 @@ export default {
       { name: "keywords", content: "PICACG,viewer,下载,免费,飞龙project,feilongproject" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "//cdn.jsdelivr.net/gh/feilongproject/bili-downloader/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", href: "//fastly.jsdelivr.net/gh/feilongproject/bili-downloader/favicon.ico" },
     ],
     script: [{ src: "/index.js" }],
   },
