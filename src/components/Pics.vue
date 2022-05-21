@@ -28,7 +28,7 @@
   </el-main>
 </template>
 
-<style>
+<style scoped>
 img {
   max-height: 100%;
   max-width: 500px;

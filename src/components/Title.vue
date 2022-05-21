@@ -16,7 +16,7 @@
         主页
       </el-menu-item>
       <el-menu-item index="block" :disabled="turnIndex.block.disabled">
-        分类
+        分区
       </el-menu-item>
       <el-menu-item index="about" :disabled="turnIndex.about.disabled">
         关于

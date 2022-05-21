@@ -156,6 +156,37 @@ declare global {
             }[],
         }
     }
+
+    interface ComicsBlock {
+        code: number,
+        message: string,
+        data: {
+            comics: {
+                docs: {
+                    _id: string,
+                    title: string,
+                    author: string,
+                    totalViews: number,
+                    totalLikes: number,
+                    pagesCount: number,
+                    epsCount: number,
+                    finished: boolean,
+                    categories: string[],
+                    thumb: {
+                        fileServer: string,
+                        path: string,
+                        originalName: string,
+                    },
+                    id: string,
+                    likesCount: number,
+                }[],
+                total: number,
+                limit: number,
+                page: number,
+                pages: number,
+            },
+        },
+    }
 }
 
 
