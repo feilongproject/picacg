@@ -1,6 +1,6 @@
 <template>
   <el-main class="main">
-    <div class="main">
+    <div class="block">
       <el-col v-for="(item, index) in blocks" :key="index">
         <div class="el-card is-always-shadow">
           <div class="el-card__body">
@@ -31,13 +31,14 @@
       :current-page.sync="page"
       :page-count="pages"
       @current-change="turnPage"
+      small
     >
     </el-pagination>
   </el-main>
 </template>
 
 <style  lang='scss' scoped>
-.main {
+.main .block {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
