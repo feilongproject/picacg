@@ -1,7 +1,11 @@
 <template>
   <el-main class="main">
     <div class="images">
-      <div v-for="(item, index) in blocks" :key="index">
+      <div
+        v-for="(item, index) in blocks"
+        :key="index"
+        @click="turnBlock(item.title)"
+      >
         <el-image
           v-if="!item.active"
           :src="`${ApiProxyUrl}storage?fileServer=${item.thumb.fileServer}&path=${item.thumb.path}`"
@@ -58,6 +62,12 @@ export default Vue.extend({
     this.blocks = blocks.data.categories;
 
     console.log("finish");
+  },
+  methods: {
+    turnBlock(blockName: string) {
+      console.log(blockName);
+      location.href = `/blocks/block?name=${blockName}`;
+    },
   },
 });
 </script>

@@ -81,7 +81,7 @@ export default Vue.extend({
           disabled: false,
         },
         block: {
-          link: "/block",
+          link: "/blocks/",
           disabled: false,
         },
         about: {

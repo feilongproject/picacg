@@ -2,7 +2,7 @@
   <keep-alive>
     <el-container direction="vertical">
       <Title />
-      <Block />
+      <Blocks />
     </el-container>
   </keep-alive>
 </template>
