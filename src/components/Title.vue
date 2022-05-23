@@ -18,9 +18,7 @@
       <el-menu-item index="block" :disabled="turnIndex.block.disabled">
         分区
       </el-menu-item>
-      <el-menu-item index="about" :disabled="turnIndex.about.disabled">
-        关于
-      </el-menu-item>
+      <el-menu-item @click="aboutDialogShow = true"> 关于 </el-menu-item>
       <el-menu-item @click="donateDialogShow = true"> 捐赠 </el-menu-item>
       <el-menu-item index="github">
         <a href="https://github.com/feilongproject/picacg/" target="_blank">
@@ -39,22 +37,26 @@
         </el-button>
       </el-menu-item>
     </el-menu>
-    <el-dialog title="捐赠/Donate" :visible.sync="donateDialogShow" width="30%">
+    <el-dialog title="捐赠/Donate" :visible.sync="donateDialogShow" width="80%">
       <span>
         提前声明：本项目完全免费 <br />
         <del>服务可能会停止，但绝不会变质</del> <br />
         当前后端服务器完全依赖于Replit提供的免费服务,因为是使用free版本的project,所以在初次打开时会因为应用被休眠而出现加载缓慢情况,只需要每月升级到Pro版本即可获取永不停止状态，所以...
         <br />
-        <el-tooltip effect="dark" content="点击查看大图" placement="bottom">
+        <el-tooltip
+          effect="dark"
+          content="左阿里，右微信，点击查看大图"
+          placement="bottom"
+        >
           <span>
             <el-image
-              style="width: 100px; height: 100px"
+              style="width: 200px; height: 200px"
               :src="donateImgList0[0]"
               :preview-src-list="donateImgList0"
             >
             </el-image>
             <el-image
-              style="width: 100px; height: 100px"
+              style="width: 200px; height: 200px"
               :src="donateImgList1[0]"
               :preview-src-list="donateImgList1"
             >
@@ -63,9 +65,22 @@
         </el-tooltip>
       </span>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="donateDialogShow = false">取消</el-button>
         <el-button type="primary" @click="donateDialogShow = false">
-          确定
+          关闭窗口
+        </el-button>
+      </span>
+    </el-dialog>
+    <el-dialog title="关于" :visible.sync="aboutDialogShow" width="80%">
+      <span>
+        本项目完全用爱发电，功能自己在
+        <a href="https://github.com/feilongproject/picacg/issues">
+          GitHub的issues
+        </a>
+        上自己提，依照能力<del>和资金</del>逐步解决
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="aboutDialogShow = false">
+          关闭窗口
         </el-button>
       </span>
     </el-dialog>
@@ -108,6 +123,7 @@ export default Vue.extend({
       donateImgList1: ["/donate/Alipay.png", "/donate/WeChatPay.png"],
 
       donateDialogShow: false,
+      aboutDialogShow: false,
       activeIndex: "1",
       searchInput: "",
       turnIndex: {
