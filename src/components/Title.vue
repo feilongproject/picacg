@@ -21,6 +21,7 @@
       <el-menu-item index="about" :disabled="turnIndex.about.disabled">
         关于
       </el-menu-item>
+      <el-menu-item @click="donateDialogShow = true"> 捐赠 </el-menu-item>
       <el-menu-item index="github">
         <a href="https://github.com/feilongproject/picacg/" target="_blank">
           GitHub Link
@@ -38,6 +39,36 @@
         </el-button>
       </el-menu-item>
     </el-menu>
+    <el-dialog title="捐赠/Donate" :visible.sync="donateDialogShow" width="30%">
+      <span>
+        提前声明：本项目完全免费 <br />
+        <del>服务可能会停止，但绝不会变质</del> <br />
+        当前后端服务器完全依赖于Replit提供的免费服务,因为是使用free版本的project,所以在初次打开时会因为应用被休眠而出现加载缓慢情况,只需要每月升级到Pro版本即可获取永不停止状态，所以...
+        <br />
+        <el-tooltip effect="dark" content="点击查看大图" placement="bottom">
+          <span>
+            <el-image
+              style="width: 100px; height: 100px"
+              :src="donateImgList0[0]"
+              :preview-src-list="donateImgList0"
+            >
+            </el-image>
+            <el-image
+              style="width: 100px; height: 100px"
+              :src="donateImgList1[0]"
+              :preview-src-list="donateImgList1"
+            >
+            </el-image>
+          </span>
+        </el-tooltip>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="donateDialogShow = false">取消</el-button>
+        <el-button type="primary" @click="donateDialogShow = false">
+          确定
+        </el-button>
+      </span>
+    </el-dialog>
     <hr noshade="noshade" style="height: 10px" />
   </el-header>
 </template>
@@ -73,6 +104,10 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
+      donateImgList0: ["/donate/WeChatPay.png", "/donate/Alipay.png"],
+      donateImgList1: ["/donate/Alipay.png", "/donate/WeChatPay.png"],
+
+      donateDialogShow: false,
       activeIndex: "1",
       searchInput: "",
       turnIndex: {
@@ -94,6 +129,7 @@ export default Vue.extend({
   mounted() {
     const { pathname } = location;
     console.log(pathname);
+    localStorage.setItem(pathname, new Date().toString());
 
     if (pathname == "/") {
       this.turnIndex.index.disabled = true;
@@ -121,16 +157,16 @@ export default Vue.extend({
         }
       }
     },
-    /*     handleClose() {
+    handleClose() {
       this.$confirm("确认关闭？")
         .then((_) => {
           //console.log("then");
-          this.searchDialog = false;
+          this.donateDialogShow = false;
         })
         .catch((_) => {
           //console.log("catch");
         });
-    }, */
+    },
     search() {
       this.$message("搜索功能还没写呢");
     },
